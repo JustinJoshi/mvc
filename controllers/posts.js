@@ -2,10 +2,10 @@ const cloudinary = require("../middleware/cloudinary");
 const Post = require("../models/Post");
 
 module.exports = {
-    getConvert: async (req, res) => {
+  getConvert: async (req, res) => {
     try {
-      const posts = await Post.find({ user: req.user.id });
-      res.render("convert.ejs", { posts: posts, user: req.user });
+      const post = await Post.findById(req.params.id);
+      res.render("convert.ejs", { post: post, user: req.user });
     } catch (err) {
       console.log(err);
     }
