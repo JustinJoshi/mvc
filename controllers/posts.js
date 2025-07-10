@@ -6,8 +6,8 @@ module.exports = {
   getConvert: async (req, res) => {
     try {
       const post = await Post.findById(req.params.id);
-      const document = await pdf2json.pdfParser.loadPDF("")
-      res.render("convert.ejs", { post: post, user: req.user });
+      const pdfDocument = await pdf2json.pdfParser.loadPDF(`${cloudinary.image}`)
+      res.render("convert.ejs", { post: post, user: req.user, document: pdfDocument});
     } catch (err) {
       console.log(err);
     }
