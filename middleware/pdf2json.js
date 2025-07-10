@@ -14,4 +14,4 @@ pdfParser.on("pdfParser_dataReady", (pdfData) => {
  );
 });
 
-// pdfParser.loadPDF("./pdf2json/test/pdf/fd/form/F1040EZ.pdf");
+// pdfParser.loadPDF()

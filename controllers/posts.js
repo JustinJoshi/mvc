@@ -1,12 +1,13 @@
 const cloudinary = require("../middleware/cloudinary");
 const Post = require("../models/Post");
-const pdf2json = require("../middleware/pdf2json")
+const pdf2json = require("../middleware/pdf2json");
 
 module.exports = {
   getConvert: async (req, res) => {
     try {
       const post = await Post.findById(req.params.id);
-      const pdfDocument = await pdf2json.pdfParser.loadPDF(`${cloudinary.image}`)
+      // const pdfDocument = await pdf2json.pdfParser.loadPDF(`${post.image}`)
+      // const pdfDocument = await pdf2json.PDFParser.loadPDF(`${post.image}`)
       res.render("convert.ejs", { post: post, user: req.user, document: pdfDocument});
     } catch (err) {
       console.log(err);
@@ -39,10 +40,12 @@ module.exports = {
   createPost: async (req, res) => {
     try {
       // Upload image to cloudinary
+      const filePath = req.file.path;
       const result = await cloudinary.uploader.upload(req.file.path);
 
       await Post.create({
         title: req.body.title,
+        path: filePath,
         image: result.secure_url,
         cloudinaryId: result.public_id,
         caption: req.body.caption,
