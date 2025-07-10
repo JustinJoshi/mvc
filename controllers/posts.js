@@ -1,10 +1,12 @@
 const cloudinary = require("../middleware/cloudinary");
 const Post = require("../models/Post");
+const pdf2json = require("../middleware/pdf2json")
 
 module.exports = {
   getConvert: async (req, res) => {
     try {
       const post = await Post.findById(req.params.id);
+      const document = await pdf2json.pdfParser.loadPDF("")
       res.render("convert.ejs", { post: post, user: req.user });
     } catch (err) {
       console.log(err);

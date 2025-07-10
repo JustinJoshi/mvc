@@ -1,6 +1,5 @@
 const fs = require("fs");
 const PDFParser = require("pdf2json");
-const Pdf = require("../models/Pdf");
 
 const pdfParser = new PDFParser();
 
