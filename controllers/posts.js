@@ -6,8 +6,7 @@ module.exports = {
   getConvert: async (req, res) => {
     try {
       const post = await Post.findById(req.params.id);
-      // const pdfDocument = await pdf2json.pdfParser.loadPDF(`${post.image}`)
-      // const pdfDocument = await pdf2json.PDFParser.loadPDF(`${post.image}`)
+      const pdfDocument = await convertPdf(post.path)
       res.render("convert.ejs", { post: post, user: req.user, document: pdfDocument});
     } catch (err) {
       console.log(err);

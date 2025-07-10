@@ -8,10 +8,13 @@ pdfParser.on("pdfParser_dataError", (errData) =>
 );
 pdfParser.on("pdfParser_dataReady", (pdfData) => {
  fs.writeFile(
-  "./pdf2json/test/F1040EZ.json",
+  "./temp/new.pdf",
   JSON.stringify(pdfData),
   (data) => console.log(data)
  );
 });
 
-// pdfParser.loadPDF()
+
+
+
+module.exports = convertPdf = (path) => pdfParser.loadPDF(`${path}`);
