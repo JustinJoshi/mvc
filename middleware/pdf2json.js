@@ -17,7 +17,7 @@ pdfParser.on("pdfParser_dataReady", (pdfData) => {
  fs.writeFile(
   "./temp/output.json",
   JSON.stringify(pdfData),
-  (data) => console.log("PDF successfully converted to json")
+  (data) => console.log("PDF successfully converted to json. Maybe add separate button for txt later")
  );
 });
 
