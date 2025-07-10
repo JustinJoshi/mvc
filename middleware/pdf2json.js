@@ -8,7 +8,7 @@ pdfParser.on("pdfParser_dataError", (errData) =>
 );
 pdfParser.on("pdfParser_dataReady", (pdfData) => {
  fs.writeFile(
-  "./temp/new.json",
+  "./temp/output.json",
   JSON.stringify(pdfData),
   (data) => console.log(data)
  );
