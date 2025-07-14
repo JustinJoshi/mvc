@@ -1,7 +1,17 @@
 const cloudinary = require("../middleware/cloudinary");
 const Post = require("../models/Post");
+const pdf2json = require("../middleware/pdf2json");
 
 module.exports = {
+  getConvert: async (req, res) => {
+    try {
+      const post = await Post.findById(req.params.id);
+      const pdfDocument = await convertPdf(post.path);
+      res.render("convert.ejs", { post: post, user: req.user, document: pdfDocument});
+    } catch (err) {
+      console.log(err);
+    }
+  },
   getProfile: async (req, res) => {
     try {
       const posts = await Post.find({ user: req.user.id });
@@ -29,10 +39,12 @@ module.exports = {
   createPost: async (req, res) => {
     try {
       // Upload image to cloudinary
+      const filePath = req.file.path;
       const result = await cloudinary.uploader.upload(req.file.path);
 
       await Post.create({
         title: req.body.title,
+        path: filePath,
         image: result.secure_url,
         cloudinaryId: result.public_id,
         caption: req.body.caption,

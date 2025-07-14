@@ -2,6 +2,7 @@
 <div class="container">
   <div class="row justify-content-center mt-5">
     <div class="col-6">
+<<<<<<< HEAD
       <h2><%= post.title %></h2>
       <img class="img-fluid" src="<%= post.image%>" />
       <div class="row justify-content-between">
@@ -31,6 +32,16 @@
       <a class="btn btn-primary" href="/profile">Return to Profile</a>
       <a class="btn btn-primary" href="/feed">Return to Feed</a>      
       <a class="btn btn-primary" href="/feed">Convert PDF to JSON</a>
+=======
+     <h1>Upload Successful</h1>
+     <h1>Insert Document Here</h1>
+    <div class="col-3 mt-5">
+    </div>
+    <div class="col-6 mt-5">
+      <a class="btn btn-primary" href="/convert/<%= post.id %>/downloadJSON">Download JSON</a>
+      <a class="btn btn-primary" href="/convert/<%= post.id %>/downloadTXT">Download TXT</a>
+      <a class="btn btn-primary" href="/profile">Return to Profile</a>
+>>>>>>> 96e068e33d7e9a7fc8c5a2947cbb6f44babb661e
     </div>
   </div>
 </div>
